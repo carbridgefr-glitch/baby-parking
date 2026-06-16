@@ -151,6 +151,33 @@
       opacity: 0.38;
     }
 
+    .bubble-a {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #fff176;
+      top: 5%;
+      right: 36%;
+    }
+
+    .bubble-b {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #ffb3d1;
+      bottom: 26%;
+      right: 18%;
+    }
+
+    .bubble-c {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #9df5d0;
+      top: 74%;
+      left: 42%;
+    }
+
     .page {
       max-width: 500px;
       margin: 0 auto;
@@ -159,12 +186,12 @@
     }
 
     .hero-card {
-      background: linear-gradient(180deg, rgba(255, 245, 202, 0.95), rgba(211, 239, 255, 0.95));
+      background: linear-gradient(180deg, rgba(255, 245, 202, 0.96), rgba(211, 239, 255, 0.96) 46%, rgba(255, 214, 232, 0.96));
       border-radius: 36px;
       padding: 24px 18px 22px;
       box-shadow: var(--shadow);
       text-align: center;
-      border: 4px solid rgba(255, 223, 117, 0.65);
+      border: 4px solid rgba(255, 212, 94, 0.75);
       overflow: hidden;
       position: relative;
     }
@@ -238,7 +265,7 @@
       line-height: 1.08;
       color: #26364d;
       letter-spacing: -0.4px;
-      text-shadow: 0 2px 0 rgba(255,255,255,0.6);
+      text-shadow: 0 2px 0 rgba(255,255,255,0.45);
     }
 
     .subtitle {
@@ -348,6 +375,59 @@
       border-radius: 22px;
     }
 
+    .parents-note {
+      background: linear-gradient(145deg, #d8f7c5 0%, #fff0a8 48%, #ffd6e8 100%);
+      border-radius: 30px;
+      padding: 18px 16px;
+      margin: 20px 0;
+      color: #3f4a2d;
+      font-size: 15.5px;
+      line-height: 1.62;
+      border: 3px solid rgba(169, 236, 143, 0.85);
+      text-align: left;
+      box-shadow: 0 10px 22px rgba(80, 130, 70, 0.13);
+      white-space: pre-line;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .parents-note:before {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(120, 215, 255, 0.28);
+      right: -28px;
+      top: -30px;
+    }
+
+    .parents-note:after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      background: rgba(255, 143, 179, 0.22);
+      left: -22px;
+      bottom: -25px;
+      transform: rotate(-18deg);
+    }
+
+    .parents-note-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #26364d;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .parents-note-text {
+      position: relative;
+      z-index: 2;
+    }
+
     .buttons {
       margin-top: 16px;
     }
@@ -364,7 +444,7 @@
       margin: 13px 0;
       box-shadow: 0 8px 18px rgba(0,0,0,0.13);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
-      border: 3px solid rgba(255, 255, 255, 0.45);
+      border: 3px solid rgba(255, 212, 94, 0.55);
     }
 
     .button:active {
@@ -401,6 +481,17 @@
       top: -35px;
       right: -25px;
       transform: rotate(16deg);
+    }
+
+    .review-section:after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(169, 236, 143, 0.34);
+      bottom: -30px;
+      left: -20px;
     }
 
     .review-title {
@@ -493,10 +584,6 @@
       .face {
         height: 84px;
       }
-
-      .star {
-        display: none;
-      }
     }
   </style>
 </head>
@@ -510,6 +597,9 @@
     <div class="toy ring"></div>
     <div class="toy star"></div>
     <div class="toy rainbow"></div>
+    <div class="toy bubble-a"></div>
+    <div class="toy bubble-b"></div>
+    <div class="toy bubble-c"></div>
   </div>
 
   <main class="page">
@@ -556,6 +646,17 @@
             title="Baby Parking Video"
             allowfullscreen>
           </iframe>
+        </div>
+
+        <div class="parents-note">
+          <div class="parents-note-title">Υστερόγραφο — Αγαπητοί γονείς</div>
+
+          <div class="parents-note-text">Σας ευχαριστώ θερμά για την εμπιστοσύνη, τη συνεργασία και τη στήριξή σας όλη αυτή τη χρονιά.
+
+Σας εύχομαι ένα ξέγνοιαστο και όμορφο καλοκαίρι, γεμάτο υγεία, χαρά και πολύτιμες στιγμές με τα παιδιά σας.
+
+Με πολλή αγάπη,
+Η κυρία Πιερρίνα ❤️</div>
         </div>
 
         <div class="buttons">
