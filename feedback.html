@@ -1,1 +1,364 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Η γνώμη σας μετράει</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --blue-soft: #e7f4ff;
+      --yellow-soft: #fff4c7;
+      --beige: #f5e6d3;
+      --text: #344054;
+      --muted: #667085;
+      --white: #ffffff;
+      --shadow: 0 14px 34px rgba(70, 70, 70, 0.15);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 239, 170, 0.95), transparent 34%),
+        radial-gradient(circle at top right, rgba(185, 220, 255, 0.95), transparent 34%),
+        linear-gradient(180deg, #fff8dd 0%, #eaf6ff 48%, #f6eadc 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px 14px 34px;
+    }
+
+    .page {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 32px;
+      padding: 26px 18px 22px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+
+    .face-wrap {
+      width: 118px;
+      height: 118px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ffffff;
+      border: 6px solid #ffffff;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.13);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .face-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    h1 {
+      margin: 8px 0 10px;
+      font-size: 25px;
+      line-height: 1.2;
+      color: #30445c;
+    }
+
+    .intro {
+      margin: 0 auto 18px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 390px;
+    }
+
+    .rating-box {
+      background: var(--yellow-soft);
+      border: 1px solid #ffe39a;
+      border-radius: 26px;
+      padding: 18px 12px;
+      margin: 18px 0;
+    }
+
+    .rating-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: #5d4722;
+      margin-bottom: 12px;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 6px 0 4px;
+    }
+
+    .star {
+      font-size: 40px;
+      color: #d0d5dd;
+      cursor: pointer;
+      transition: transform 0.12s ease, color 0.12s ease;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .star.active {
+      color: #f5b942;
+    }
+
+    .star:active {
+      transform: scale(0.88);
+    }
+
+    .selected-text {
+      font-size: 13px;
+      color: #6a4d14;
+      margin-top: 10px;
+      min-height: 18px;
+      font-weight: 700;
+    }
+
+    .form-box {
+      margin-top: 18px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 15px;
+      font-weight: 900;
+      color: #30445c;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 155px;
+      border: 1px solid #d8e4ef;
+      border-radius: 22px;
+      padding: 15px;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+      resize: vertical;
+      outline: none;
+      background: #fbfdff;
+      color: #344054;
+      line-height: 1.45;
+    }
+
+    textarea:focus {
+      border-color: #9ccdf8;
+      box-shadow: 0 0 0 4px rgba(156, 205, 248, 0.25);
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      border: 0;
+      border-radius: 20px;
+      padding: 16px 18px;
+      font-size: 17px;
+      font-weight: 900;
+      margin: 14px 0 0;
+      box-shadow: 0 7px 16px rgba(0,0,0,0.10);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      text-align: center;
+    }
+
+    .button:active {
+      transform: scale(0.98);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.14);
+    }
+
+    .send {
+      background: #dceeff;
+      color: #344054;
+    }
+
+    .back {
+      background: #f7e3c7;
+      color: #344054;
+      font-size: 15px;
+    }
+
+    .small-note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #777;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: #777;
+      margin-top: 18px;
+      line-height: 1.5;
+    }
+
+    .footer a {
+      color: #777;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 390px) {
+      h1 {
+        font-size: 23px;
+      }
+
+      .face-wrap {
+        width: 106px;
+        height: 106px;
+      }
+
+      .star {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="card">
+
+      <div class="face-wrap">
+        <img id="faceImage" src="sad.jpg" alt="Επιλεγμένο προσωπάκι" />
+      </div>
+
+      <h1 id="pageTitle">Η γνώμη σας μετράει</h1>
+
+      <p class="intro" id="pageIntro">
+        Γράψτε μας τη γνώμη σας, ώστε να δούμε με προσοχή τι μπορούμε να βελτιώσουμε.
+      </p>
+
+      <div class="rating-box">
+        <div class="rating-title">Πόσα αστέρια θα δίνατε στην εμπειρία σας;</div>
+
+        <div class="stars" aria-label="Επιλογή αστεριών">
+          <span class="star" onclick="setRating(1)">★</span>
+          <span class="star" onclick="setRating(2)">★</span>
+          <span class="star" onclick="setRating(3)">★</span>
+          <span class="star" onclick="setRating(4)">★</span>
+          <span class="star" onclick="setRating(5)">★</span>
+        </div>
+
+        <div class="selected-text" id="selectedText"></div>
+      </div>
+
+      <div class="form-box">
+        <label for="feedbackText">Το σχόλιό σας</label>
+
+        <textarea id="feedbackText" placeholder="Γράψτε εδώ το σχόλιο ή το παράπονό σας..."></textarea>
+      </div>
+
+      <button class="button send" onclick="sendFeedback()">
+        Στέλνω το σχόλιό μου
+      </button>
+
+      <a class="button back" href="index.html" target="_self">
+        Επιστροφή στην αρχική σελίδα
+      </a>
+
+      <div class="small-note">
+        Το σχόλιό σας θα σταλεί στην επιχείρηση, ώστε να το δει και να βελτιώσει την εμπειρία των γονέων.
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      Powered by NFC Μπρελόκ • Jewel Art<br />
+      Instagram:
+      <a href="https://www.instagram.com/lazaros_jewelart" target="_self">
+        @lazaros_jewelart
+      </a>
+    </footer>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const mood = params.get("mood");
+
+    const faceImage = document.getElementById("faceImage");
+    const pageTitle = document.getElementById("pageTitle");
+    const pageIntro = document.getElementById("pageIntro");
+    const selectedText = document.getElementById("selectedText");
+
+    let selectedRating = 0;
+
+    if (mood === "neutral") {
+      faceImage.src = "neutral.jpg";
+      faceImage.alt = "Ουδέτερο προσωπάκι";
+      pageTitle.textContent = "Θέλουμε να ακούσουμε τη γνώμη σας";
+      pageIntro.textContent = "Η εμπειρία σας είναι σημαντική για εμάς. Γράψτε μας τι μπορούμε να κάνουμε καλύτερα.";
+    } else {
+      faceImage.src = "sad.jpg";
+      faceImage.alt = "Λυπημένο προσωπάκι";
+      pageTitle.textContent = "Λυπούμαστε αν κάτι δεν πήγε όπως έπρεπε";
+      pageIntro.textContent = "Γράψτε μας το σχόλιό σας, ώστε να το δούμε με προσοχή και να βελτιωθούμε.";
+    }
+
+    function setRating(rating) {
+      selectedRating = rating;
+
+      const stars = document.querySelectorAll(".star");
+
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add("active");
+        } else {
+          star.classList.remove("active");
+        }
+      });
+
+      selectedText.textContent = "Επιλέξατε " + rating + " / 5 αστέρια";
+    }
+
+    function sendFeedback() {
+      const text = document.getElementById("feedbackText").value.trim();
+
+      if (selectedRating === 0) {
+        alert("Παρακαλώ επιλέξτε πρώτα πόσα αστέρια θέλετε.");
+        return;
+      }
+
+      if (!text) {
+        alert("Παρακαλώ γράψτε πρώτα το σχόλιό σας.");
+        return;
+      }
+
+      const businessEmail = "patrasbabyparking@gmail.com";
+
+      const moodText = mood === "neutral" ? "Ουδέτερο προσωπάκι" : "Λυπημένο προσωπάκι";
+
+      const subject = encodeURIComponent("Σχόλιο από NFC σελίδα Baby Parking");
+
+      const body = encodeURIComponent(
+        "Νέο σχόλιο από τη σελίδα NFC Baby Parking\n\n" +
+        "Επιλεγμένο προσωπάκι: " + moodText + "\n" +
+        "Αστέρια: " + selectedRating + "/5\n\n" +
+        "Σχόλιο:\n" + text
+      );
+
+      window.location.href = "mailto:" + businessEmail + "?subject=" + subject + "&body=" + body;
+    }
+  </script>
+</body>
+</html>
